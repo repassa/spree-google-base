@@ -1,11 +1,11 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+<%= render partial: 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
   <%= Spree.t("google_base.export_settings") %>
 <% end %>
 
-<%= form_tag(admin_google_base_settings_path, :method => :put) do |f| %>
-  <% [:title, :public_domain, :description, :ftp_username, 
+<%= form_tag(admin_google_base_settings_path, method: :put) do |f| %>
+  <% [:title, :public_domain, :description, :ftp_username,
       :ftp_password, :enable_taxon_mapping].each do |setting| %>
     <div class="field"><%= setting_field(setting) %></div>
   <% end %>
@@ -13,6 +13,6 @@
   <div class="form-buttons filter-actions actions" data-hook="buttons">
     <%= button Spree.t('actions.update'), 'refresh' %>
     <span class="or"><%= Spree.t(:or) %></span>
-    <%= link_to_with_icon 'remove', Spree.t('actions.cancel'), admin_google_base_settings_url, :class => 'button' %>
+    <%= link_to_with_icon 'remove', Spree.t('actions.cancel'), admin_google_base_settings_url, class: 'button' %>
   </div>
 <% end %>

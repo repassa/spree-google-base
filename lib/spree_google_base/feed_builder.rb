@@ -31,8 +31,11 @@ module SpreeGoogleBase
 
       @title = Spree::GoogleBase::Config[:store_name]
 
-      @domain = Spree::Config[:site_url]
-      @domain = "http://#{@domain}"unless @domain.starts_with?("http")
+      unless @domain.starts_with?("http")
+        @domain = "http://#{@domain}"
+      else
+        @domain = Spree::Config[:site_url]
+      end
     end
 
     def ar_scope
@@ -42,7 +45,7 @@ module SpreeGoogleBase
     def generate_and_transfer_store
       delete_xml_if_exists
 
-      File.open(path, 'w') do |file| 
+      File.open(path, 'w') do |file|
         generate_xml file
       end
 
@@ -60,7 +63,7 @@ module SpreeGoogleBase
     end
 
     def filename
-      @filename ||= "google_base.xml"
+      @filename ||= "google_merchant.xml"
     end
 
     def delete_xml_if_exists

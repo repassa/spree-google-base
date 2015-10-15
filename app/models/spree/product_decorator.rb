@@ -1,15 +1,15 @@
 module Spree
   Product.class_eval do
-    scope :google_base_scope, -> { preload(:taxons, {:master => :images}) }
-    
+    scope :google_base_scope, -> { preload(:taxons, { master: :images }) }
+
     def google_base_description
       description
     end
-    
+
     def google_base_condition
       'new'
     end
-    
+
     def google_base_availability
       'in stock'
     end
@@ -21,10 +21,9 @@ module Spree
     def google_base_brand
       # Taken from github.com/romul/spree-solr-search
       # app/models/spree/product_decorator.rb
-      #
       pp = Spree::ProductProperty.joins(:property)
-                                 .where(:product_id => self.id)
-                                 .where(:spree_properties => {:name => 'brand'})
+                                 .where(product_id: self.id)
+                                 .where(spree_properties: {name: 'brand'})
                                  .first
 
       pp ? pp.value : nil
