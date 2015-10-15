@@ -30,12 +30,8 @@ module SpreeGoogleBase
         opts[:store].present? or (opts[:path].present? or Spree::GoogleBase::Config[:public_domain])
 
       @title = Spree::GoogleBase::Config[:store_name]
-
-      unless @domain.starts_with?("http")
-        @domain = "http://#{@domain}"
-      else
-        @domain = Spree::Config[:site_url]
-      end
+      @domain = Spree::Config[:site_url]
+      @domain = "http://#{@domain}" unless @domain.starts_with?("http")
     end
 
     def ar_scope
