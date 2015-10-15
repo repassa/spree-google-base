@@ -3,8 +3,16 @@ require 'net/ftp'
 module SpreeGoogleBase
   class FeedBuilder
     include Spree::Core::Engine.routes.url_helpers
-
     attr_reader :store, :domain, :title
+
+    def initialize(opts = {})
+      raise "Please pass a public address as the second argument, or configure :public_domain in Spree::GoogleBase::Config" unless
+        opts[:store].present? or (opts[:path].present? or Spree::GoogleBase::Config[:public_domain])
+
+      @title = Spree::GoogleBase::Config[:store_name]
+      @domain = Spree::Config[:site_url]
+      @domain = "http://#{@domain}" if @domain && !@domain.starts_with?("http")
+    end
 
     def self.generate_and_transfer
       self.builders.each do |builder|
@@ -23,15 +31,6 @@ module SpreeGoogleBase
 
     def self.builders
       [self.new]
-    end
-
-    def initialize(opts = {})
-      raise "Please pass a public address as the second argument, or configure :public_domain in Spree::GoogleBase::Config" unless
-        opts[:store].present? or (opts[:path].present? or Spree::GoogleBase::Config[:public_domain])
-
-      @title = Spree::GoogleBase::Config[:store_name]
-      @domain = Spree::Config[:site_url]
-      @domain = "http://#{@domain}" unless @domain.starts_with?("http")
     end
 
     def ar_scope
@@ -74,7 +73,7 @@ module SpreeGoogleBase
         xml.channel do
           build_meta(xml)
 
-          ar_scope.find_each(:batch_size => 300) do |product|
+          ar_scope.find_each(:batch_size => 1000) do |product|
             build_product(xml, product)
           end
         end
@@ -138,6 +137,5 @@ module SpreeGoogleBase
       xml.title @title
       xml.link @domain
     end
-
   end
 end
