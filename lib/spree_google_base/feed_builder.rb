@@ -84,7 +84,8 @@ module SpreeGoogleBase
       raise "Please configure your Google Base :ftp_username and :ftp_password by configuring Spree::GoogleBase::Config" unless
         Spree::GoogleBase::Config[:ftp_username] and Spree::GoogleBase::Config[:ftp_password]
 
-      ftp = Net::FTP.new('partnerupload.google.com')
+      ftp = Net::FTP.new
+      ftp.connect('partnerupload.google.com', 19321)
       ftp.passive = true
       ftp.login(Spree::GoogleBase::Config[:ftp_username], Spree::GoogleBase::Config[:ftp_password])
       ftp.put(path, filename)
