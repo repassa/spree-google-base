@@ -1,21 +1,18 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+<%= render partial: 'spree/admin/shared/configuration_menu' %>
 
-<h1><%= Spree.t("google_base.export_settings") %></h1>
-
-<%= form_tag(admin_google_base_settings_path, :method => :put) do |f| %>
-  <% [:title, :public_domain, :description, :ftp_username, 
-      :ftp_password, :enable_taxon_mapping].each do |setting| %>
-    <p><%= setting_field(setting) %></p>
-  <% end %>
-
-  <p class="form-buttons">
-    <%= button Spree.t('update') %> 
-    <%= Spree.t("or") %> <%= link_to Spree.t("cancel"), admin_google_base_settings_url %>
-  </p>
+<% content_for :page_title do %>
+  <%= Spree.t("google_base.export_settings") %>
 <% end %>
 
-<% content_for :head do %>
-  <style>
-    .edit_google_base_configuration input { width: 250px; }
-  </style>
+<%= form_tag(admin_google_base_settings_path, method: :put) do |f| %>
+  <% [:title, :public_domain, :description, :ftp_username,
+      :ftp_password, :enable_taxon_mapping].each do |setting| %>
+    <div class="field"><%= setting_field(setting) %></div>
+  <% end %>
+
+  <div class="form-buttons filter-actions actions" data-hook="buttons">
+    <%= button Spree.t('actions.update'), 'refresh' %>
+    <span class="or"><%= Spree.t(:or) %></span>
+    <%= link_to_with_icon 'remove', Spree.t('actions.cancel'), admin_google_base_settings_url, class: 'button' %>
+  </div>
 <% end %>

@@ -1,0 +1,13 @@
+pt-BR:
+  spree:
+    google_base:
+      export_settings: "Exportar configurações do Google Merchant"
+      title: "Título"
+      public_domain: "Domínio"
+      description: "Descrição"
+      ftp_username: "Username do FTP"
+      ftp_password: "Senha do FTP"
+      manage_taxon_mapping: "Manage taxon mapping"
+      manage_taxon_mapping: "Alterar mapeamento taxonômico"
+      enable_taxon_mapping: "Habilitar mapeamento taxonômico"
+      taxonomy_mapping: "Mapeamento taxonômico do Google Merchant"

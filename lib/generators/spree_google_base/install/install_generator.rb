@@ -2,6 +2,10 @@ module SpreeGoogleBase
   module Generators
     class InstallGenerator < Rails::Generators::Base
 
+      def add_stylesheets
+        inject_into_file 'vendor/assets/stylesheets/spree/backend/all.css', " *= require spree/backend/spree_google_base\n", before: /\*\//, verbose: true
+      end
+
       def add_migrations
         run 'rake railties:install:migrations FROM=spree_google_base'
       end

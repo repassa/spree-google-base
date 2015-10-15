@@ -9,3 +9,4 @@ en:
       ftp_password: "FTP password"
       manage_taxon_mapping: "Manage taxon mapping"
       enable_taxon_mapping: "Enable taxon mapping"
+      taxonomy_mapping: "Google Base Taxonomy Mapping"

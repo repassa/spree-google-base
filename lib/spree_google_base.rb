@@ -9,5 +9,3 @@ module Spree
 end
 
 require 'spree_google_base/engine'
-
-
