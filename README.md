@@ -1,6 +1,6 @@
 # Spree Google Merchant (for Spree 2.3.1)
 
-This extension allows you to use Google Base to list products for free that will appear in Google Product Search (http://www.google.com/shopping).
+This extension allows you to use Google Shopping to list products for free that will appear in Google Product Searches (http://www.google.com/shopping).
 
 [Learn more about Google Base](http://support.google.com/merchants/bin/answer.py?hl=en&answer=160540)
 
