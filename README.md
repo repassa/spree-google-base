@@ -1,8 +1,8 @@
 # Spree Google Merchant (for Spree 2.3.1)
 
-This extension allows you to use Google Shopping to list products for free that will appear in Google Product Searches (http://www.google.com/shopping).
+This extension allows you to use Google Shopping to list products for free that will appear in Google's roduct searches (http://www.google.com/shopping).
 
-[Learn more about Google Base](http://support.google.com/merchants/bin/answer.py?hl=en&answer=160540)
+[Learn more about Google Shopping](http://support.google.com/merchants/bin/answer.py?hl=en&answer=160540)
 
 For product feed field definitions, (consult http://support.google.com/merchants/bin/answer.py?hl=en&answer=188494#US)
 
@@ -28,11 +28,12 @@ If you receive an error `501 Syntax error in parameters or arguments`, the FTP s
 ## ADVANCED CONFIGURATION
 
 You can modify fields set for export and list of 'g:' attributes. Just create\modify config/initializers/google_base.rb and override values of GOOGLE_BASE_ATTR_MAP and GOOGLE_BASE_FILTERED_ATTRS arrays with help of Array#delete, Array#delete_at, Array#<<, Array#+=, etc.
-Also you can override methods from product_decorator.rb in your site extension.
+Also you can override methods from your Product model if you want.
 
 ## CRONJOBS
 
 There are two options to regulate Google Merchant product update:
 
-A) Try to run `rake spree_google_base:generate_test_file`
-B) Setup cronjobs to run `rake spree_google_base:generate_and_transfer`
+A) Try to run `rake spree_google_base:generate_test_file` to check if the uploader is working well
+
+B) Setup cronjobs to run `rake spree_google_base:generate_and_transfer` if everything is OK with A step
